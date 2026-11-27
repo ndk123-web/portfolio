@@ -3,7 +3,7 @@
 import { createContext, useState, useEffect } from "react";
 
 export const ThemeContext = createContext({
-  theme: "dark",
+  theme: "light",
   setTheme: () => {},
 });
 
@@ -12,7 +12,7 @@ export const ThemeProvider = ({ children }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("ndk_theme") || "dark";
+    const savedTheme = localStorage.getItem("ndk_theme") || "light";
     setTheme(savedTheme);
     if (savedTheme === "dark") {
       document.documentElement.classList.add("dark");

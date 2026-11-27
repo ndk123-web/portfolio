@@ -133,7 +133,7 @@ export default function Header({
 
           {/* Resume link */}
           <a
-            href="/v6_resume_sde.pdf"
+            href="/sde_resume_2.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={`flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-md border transition-colors ${
@@ -211,7 +211,7 @@ export default function Header({
             ))}
             <div className="pt-2 border-t border-neutral-200 dark:border-[#22252a] flex items-center justify-between">
               <a
-                href="/v6_resume_sde.pdf"
+                href="/sde_resume_2.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs font-mono text-blue-400 flex items-center gap-1.5"

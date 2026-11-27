@@ -1,18 +1,15 @@
 "use client";
 
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 import { ThemeContext } from "@/context/ThemeContext";
-
-const AUTO_DELAY = 5000;
 
 export default function Intro() {
   const { theme, mounted } = useContext(ThemeContext);
   const isDark = mounted ? theme === "dark" : true;
   const reduceMotion = useReducedMotion();
   const [visible, setVisible] = useState(true);
-  const timerRef = useRef(null);
 
   const dismiss = useCallback(() => {
     setVisible(false);
@@ -22,12 +19,10 @@ export default function Intro() {
   useEffect(() => {
     if (!visible) return undefined;
     document.body.style.overflow = "hidden";
-    timerRef.current = setTimeout(dismiss, AUTO_DELAY);
     return () => {
-      clearTimeout(timerRef.current);
       document.body.style.overflow = "";
     };
-  }, [visible, dismiss]);
+  }, [visible]);
 
   const reveal = (delay) =>
     reduceMotion
@@ -80,15 +75,25 @@ export default function Intro() {
               {...reveal(0.25)}
               className={`mt-3 text-sm sm:text-base ${isDark ? "text-neutral-400" : "text-neutral-700"}`}
             >
-              Backend &amp; Distributed Systems Engineer
+              AI Systems Engineer | Backend &amp; Distributed Systems
             </motion.p>
 
-            <motion.div {...reveal(0.35)} className="mt-9 flex justify-center">
+            <motion.div {...reveal(0.35)} className="relative mt-9 flex justify-center">
+              {!reduceMotion && (
+                <motion.span
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute -inset-px rounded-lg border ${
+                    isDark ? "border-blue-400/40" : "border-blue-600/40"
+                  }`}
+                  animate={{ opacity: [0.25, 0.6, 0.25] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                />
+              )}
               <button
                 type="button"
                 onClick={dismiss}
                 aria-label="Enter portfolio"
-                className={`group inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-colors ${
+                className={`group relative inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-colors ${
                   isDark
                     ? "bg-neutral-100 text-neutral-950 hover:bg-white"
                     : "bg-neutral-950 text-white hover:bg-neutral-800"
@@ -98,29 +103,14 @@ export default function Intro() {
                 <FaArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
               </button>
             </motion.div>
-          </div>
 
-          <motion.div {...reveal(0.45)} className="absolute inset-x-0 bottom-8 text-center">
-            <button
-              type="button"
-              onClick={dismiss}
-              className={`font-mono text-[11px] transition-colors ${
-                isDark ? "text-neutral-600 hover:text-neutral-300" : "text-neutral-400 hover:text-neutral-700"
-              }`}
+            <motion.p
+              {...reveal(0.45)}
+              className={`mt-4 font-mono text-[11px] ${isDark ? "text-neutral-600" : "text-neutral-400"}`}
             >
-              skip intro
-            </button>
-          </motion.div>
-
-          <motion.div
-            aria-hidden="true"
-            className={`absolute inset-x-0 bottom-0 h-px origin-left ${
-              isDark ? "bg-blue-400" : "bg-blue-600"
-            }`}
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: reduceMotion ? 0 : AUTO_DELAY / 1000, ease: "linear" }}
-          />
+              click to view my work
+            </motion.p>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

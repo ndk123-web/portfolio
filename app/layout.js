@@ -2,11 +2,12 @@ import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext.js";
 
 export const metadata = {
-  title: "Navnath Kadam | Backend & Distributed Systems Engineer",
+  title: "Navnath Kadam — AI Systems Engineer | Backend & Distributed Systems",
   description:
-    "Navnath Kadam — Backend-focused Software Engineer building distributed systems, developer tools, and AI-integrated applications. Creator of FlowFrame, NDK RPC Cluster, and who-is-running CLI.",
+    "Navnath Kadam — AI Systems Engineer building distributed systems, developer tools, and AI-integrated applications. Creator of FlowFrame, NDK RPC Cluster, and who-is-running CLI.",
   keywords: [
     "Navnath Kadam",
+    "AI Systems Engineer",
     "Software Engineer",
     "Backend Engineer",
     "Distributed Systems",

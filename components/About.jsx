@@ -116,7 +116,7 @@ export default function About({ aboutRef }) {
           </div>
 
           <a
-            href="/v6_resume_sde.pdf"
+            href="/sde_resume_2.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={`inline-flex items-center gap-2 text-xs font-mono px-4 py-2 rounded-lg border transition-colors whitespace-nowrap ${

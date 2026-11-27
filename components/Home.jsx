@@ -33,7 +33,7 @@ export default function Home({ homeRef, projectsRef, contactRef }) {
             </h1>
 
             <p className="text-base sm:text-lg font-medium text-neutral-900 dark:text-neutral-200 leading-snug">
-              Backend-focused Software Engineer building distributed systems, developer tools, and AI-integrated applications.
+              AI Systems Engineer | Backend &amp; Distributed Systems
             </p>
 
             <p className="text-sm sm:text-base leading-relaxed text-neutral-800 dark:text-neutral-300 max-w-xl mx-auto md:mx-0">

@@ -20,14 +20,14 @@ export default function Footer() {
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
         {/* Left: Identity & Copyright */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <span className="font-bold text-neutral-950 dark:text-neutral-200">
             Navnath Kadam
           </span>
           <span>·</span>
           <span>© {new Date().getFullYear()}</span>
           <span>·</span>
-          <span>Backend & Distributed Systems</span>
+          <span>AI Systems Engineer | Backend & Distributed Systems</span>
         </div>
 
         {/* Right: Last Updated & Back to top */}

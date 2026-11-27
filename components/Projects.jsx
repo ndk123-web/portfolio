@@ -14,6 +14,26 @@ import {
 } from "react-icons/fa";
 
 const projects = [
+    {
+    id: "flowframe",
+    title: "FlowFrame",
+    category: "Systems & Architecture",
+    tag: "DISTRIBUTED SYSTEMS SIMULATOR",
+    summary:
+      "Interactive distributed systems visualizer and simulator for modeling request flows, latency bottlenecks, and microservice failure scenarios.",
+    problem:
+      "Traditional system design diagrams are static canvas drawings. Engineers cannot visually test how request pipelines behave under latency spikes, cascading database failures, or cache misses.",
+    solution:
+      "Built a live simulation engine that executes request flow packets through configurable nodes (Load Balancers, Redis, PostgreSQL, Worker Pools), dynamically computing latency accumulation and bottleneck metrics.",
+    decisions: [
+      "Rust & Axum backend pipeline for high-throughput request propagation simulation.",
+      "Tokio async task runtimes for concurrent node latency simulation.",
+      "Canvas-based rendering engine in Next.js/TypeScript to prevent DOM thrashing during high-frequency flow animations.",
+    ],
+    tech: ["Rust", "Axum", "Tokio", "Next.js", "TypeScript", "Node.js"],
+    github: "https://github.com/ndk123-web/flowframe",
+    live: "https://flowframe.ndkdev.tech/",
+  },
   {
     id: "trak",
     title: "Trak CLI",
@@ -32,26 +52,6 @@ const projects = [
     ],
     tech: ["Go", "Cobra", "GitOps", "CLI", "AST Materializer", "Unix Filesystem"],
     github: "https://github.com/ndk123-web/trak",
-  },
-  {
-    id: "flowframe",
-    title: "FlowFrame",
-    category: "Systems & Architecture",
-    tag: "DISTRIBUTED SYSTEMS SIMULATOR",
-    summary:
-      "Interactive distributed systems visualizer and simulator for modeling request flows, latency bottlenecks, and microservice failure scenarios.",
-    problem:
-      "Traditional system design diagrams are static canvas drawings. Engineers cannot visually test how request pipelines behave under latency spikes, cascading database failures, or cache misses.",
-    solution:
-      "Built a live simulation engine that executes request flow packets through configurable nodes (Load Balancers, Redis, PostgreSQL, Worker Pools), dynamically computing latency accumulation and bottleneck metrics.",
-    decisions: [
-      "Rust & Axum backend pipeline for high-throughput request propagation simulation.",
-      "Tokio async task runtimes for concurrent node latency simulation.",
-      "Canvas-based rendering engine in Next.js/TypeScript to prevent DOM thrashing during high-frequency flow animations.",
-    ],
-    tech: ["Rust", "Axum", "Tokio", "Next.js", "TypeScript", "Node.js"],
-    github: "https://github.com/ndk123-web/flowframe",
-    live: "https://flowframe.taskplexus.app/",
   },
   {
     id: "ndk-rpc-cluster",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Intro from "@/components/Intro.jsx";
 import Header from "@/components/Header.jsx";
 import Home from "@/components/Home.jsx";
 import Projects from "@/components/Projects.jsx";
@@ -20,6 +21,8 @@ export default function Main() {
 
   return (
     <div className="min-h-screen bg-[#f9fafb] dark:bg-[#0c0d0e] text-neutral-900 dark:text-neutral-100 transition-colors duration-200">
+      <Intro />
+
       <Header
         homeRef={homeRef}
         projectsRef={projectsRef}

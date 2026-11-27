@@ -38,7 +38,7 @@ export default function Intro() {
       {visible && (
         <motion.div
           key="intro"
-          initial={{ opacity: reduceMotion ? 1 : 0 }}
+          initial={false}
           animate={{ opacity: 1 }}
           exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.03, filter: "blur(6px)" }}
           transition={{ duration: reduceMotion ? 0 : 0.5, ease: "easeInOut" }}
@@ -78,17 +78,7 @@ export default function Intro() {
               AI Systems Engineer | Backend &amp; Distributed Systems
             </motion.p>
 
-            <motion.div {...reveal(0.35)} className="relative mt-9 flex justify-center">
-              {!reduceMotion && (
-                <motion.span
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute -inset-px rounded-lg border ${
-                    isDark ? "border-blue-400/40" : "border-blue-600/40"
-                  }`}
-                  animate={{ opacity: [0.25, 0.6, 0.25] }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                />
-              )}
+            <motion.div {...reveal(0.35)} className="mt-9 flex justify-center">
               <button
                 type="button"
                 onClick={dismiss}

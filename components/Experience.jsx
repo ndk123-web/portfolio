@@ -1,159 +1,155 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext.js";
-import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaBuilding } from "react-icons/fa";
+import { ThemeContext } from "@/context/ThemeContext";
+import { FaBuilding, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 const experiences = [
   {
     role: "AI Automation Intern",
     company: "Autonova AI",
-    type: "Internship",
-    duration: "May 2026 – 18 July 2026 · 3 mos",
+    period: "May 2026 – July 2026 · 3 mos",
     location: "India · Remote",
-    description: "Worked on AI automation workflows, backend integrations, and scalable AI-powered systems while collaborating remotely with the development team.",
-    skills: ["AI Automation", "Backend Integration", "Scalable Systems", "Remote Collaboration"],
-    color: "from-indigo-500 to-purple-500",
-    current: false,
+    type: "Internship",
+    summary:
+      "Engineered backend automation pipelines, integrated AI-driven task orchestration, and supported asynchronous microservice workflows.",
+    responsibilities: [
+      "Built resilient backend integration hooks connecting external LLM endpoints with internal execution pipelines.",
+      "Developed automated data transformation routines to handle unstructured prompt inputs and normalize responses for client consumption.",
+      "Collaborated remotely with engineering leads across asynchronous code reviews, API contract designs, and system reliability testing.",
+      "Streamlined automated service workflows, reducing manual pipeline triggers across multi-step execution chains.",
+    ],
+    skills: ["AI Automation", "Backend Integration", "Asynchronous Systems", "REST APIs", "Remote Collaboration"],
   },
 ];
 
 export default function Experience({ experienceRef }) {
-  const { theme } = useContext(ThemeContext);
-  const isDark = theme === "dark";
+  const { theme, mounted } = useContext(ThemeContext);
+  const isDark = mounted ? theme === "dark" : true;
 
   return (
     <section
       ref={experienceRef}
-      className={`relative pt-28 pb-20 overflow-hidden ${
-        isDark ? "bg-[#0a0a0f] text-white" : "bg-[#f8fafc] text-gray-900"
+      className={`py-20 border-t transition-colors duration-200 ${
+        isDark ? "bg-[#0c0d0e] border-[#22252a] text-neutral-100" : "bg-[#f9fafb] border-neutral-300 text-neutral-950"
       }`}
     >
-      <div className={`absolute inset-0 pointer-events-none ${isDark ? "bg-grid-dark" : "bg-grid-light"}`} />
-      <div className="absolute -bottom-20 left-0 w-96 h-96 bg-indigo-600/8 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="container mx-auto px-6 relative z-10">
-
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-14"
-        >
-          <p className="text-sm font-semibold uppercase tracking-widest mb-3 gradient-text">Career</p>
-          <h2 className={`text-4xl lg:text-5xl font-extrabold ${isDark ? "text-white" : "text-gray-900"}`}>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        {/* Section Header */}
+        <div className="mb-10">
+          <div className="text-xs font-mono uppercase tracking-wider text-neutral-600 dark:text-neutral-400 mb-1">
+            Career History
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 dark:text-neutral-100">
             Work Experience
           </h2>
-        </motion.div>
+          <p className="text-sm text-neutral-700 dark:text-neutral-400 mt-1 max-w-xl">
+            Chronological engineering roles, responsibilities, and delivered systems.
+          </p>
+        </div>
 
-        {/* Timeline */}
-        <div className="relative max-w-2xl mx-auto">
-          {/* Vertical line */}
-          <div className={`absolute left-6 top-0 bottom-0 w-px ${isDark ? "bg-white/6" : "bg-black/6"}`} />
-
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              viewport={{ once: true }}
-              className="relative pl-16 pb-10"
+        {/* Experience Cards */}
+        <div className="space-y-6">
+          {experiences.map((exp, idx) => (
+            <div
+              key={idx}
+              className={`rounded-xl border p-6 sm:p-7 transition-colors ${
+                isDark
+                  ? "bg-[#131518] border-[#22252a] hover:border-[#2e333b]"
+                  : "bg-white border-neutral-300 hover:border-neutral-400 shadow-sm"
+              }`}
             >
-              {/* Dot */}
-              <div className="absolute left-[18px] top-7 -translate-x-1/2">
-                <div className={`w-7 h-7 rounded-full flex items-center justify-center border-2 ${
-                  isDark ? "border-[#0a0a0f] bg-indigo-500" : "border-[#f8fafc] bg-indigo-500"
-                }`}>
-                  <FaBriefcase className="w-3 h-3 text-white" />
-                </div>
-                {exp.current && (
-                  <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
-                  </span>
-                )}
-              </div>
-
-              {/* Card */}
-              <motion.div
-                whileHover={{ y: -4, scale: 1.01 }}
-                className={`relative p-6 rounded-2xl border overflow-hidden ${
-                  isDark ? "glass-dark border-white/6 hover:border-white/12" : "glass-light border-black/8 hover:shadow-xl"
-                }`}
-              >
-                {/* Top color bar */}
-                <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${exp.color}`} />
-
-                {/* Badge + title */}
-                <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-                  <div>
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                      isDark ? "bg-indigo-500/15 text-indigo-400" : "bg-indigo-50 text-indigo-600"
-                    }`}>
+              {/* Header: Role, Company & Meta */}
+              <div className="flex flex-wrap items-start justify-between gap-3 pb-4 border-b border-neutral-200 dark:border-[#22252a]/60">
+                <div>
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-[#1f2228] text-neutral-900 dark:text-neutral-300 border border-neutral-200 dark:border-transparent font-medium">
                       {exp.type}
                     </span>
-                    <h3 className={`text-xl font-bold mt-2 ${isDark ? "text-white" : "text-gray-900"}`}>
-                      {exp.role}
-                    </h3>
-                    <div className={`flex items-center gap-1.5 text-sm font-medium mt-0.5 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                      <FaBuilding className="w-3 h-3" />
-                      <span>{exp.company}</span>
-                    </div>
+                    <span className="text-xs text-neutral-600 dark:text-neutral-400 font-mono flex items-center gap-1 font-medium">
+                      <FaCalendarAlt className="w-2.5 h-2.5" /> {exp.period}
+                    </span>
                   </div>
-                  {exp.current && (
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-green-500/15 text-green-400 border border-green-500/20">
-                      Current
+                  <h3 className="text-lg sm:text-xl font-bold tracking-tight text-neutral-950 dark:text-neutral-100">
+                    {exp.role}
+                  </h3>
+                  <div className="flex items-center gap-2 text-sm text-neutral-700 dark:text-neutral-400 mt-0.5">
+                    <span className="font-semibold text-neutral-900 dark:text-neutral-200 flex items-center gap-1.5">
+                      <FaBuilding className="w-3 h-3 text-neutral-500" />
+                      {exp.company}
                     </span>
-                  )}
-                </div>
-
-                {/* Meta chips */}
-                <div className={`flex flex-wrap gap-3 text-xs font-medium mb-4 ${isDark ? "text-gray-500" : "text-gray-400"}`}>
-                  <span className="flex items-center gap-1.5">
-                    <FaCalendarAlt className="w-3 h-3" /> {exp.duration}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <FaMapMarkerAlt className="w-3 h-3" /> {exp.location}
-                  </span>
-                </div>
-
-                {/* Description */}
-                <p className={`text-sm leading-relaxed mb-5 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-                  {exp.description}
-                </p>
-
-                {/* Skill tags */}
-                <div className="flex flex-wrap gap-1.5">
-                  {exp.skills.map((s) => (
-                    <span
-                      key={s}
-                      className={`text-xs px-2.5 py-1 rounded-lg border font-medium ${
-                        isDark ? "bg-white/4 border-white/8 text-gray-300" : "bg-black/3 border-black/8 text-gray-600"
-                      }`}
-                    >
-                      {s}
+                    <span>·</span>
+                    <span className="flex items-center gap-1 text-xs">
+                      <FaMapMarkerAlt className="w-2.5 h-2.5 text-neutral-500" />
+                      {exp.location}
                     </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Summary */}
+              <p className="text-sm text-neutral-800 dark:text-neutral-200 mt-4 leading-relaxed font-normal">
+                {exp.summary}
+              </p>
+
+              {/* Responsibilities */}
+              <div className="my-4">
+                <div className="text-xs font-mono uppercase tracking-wider text-neutral-700 dark:text-neutral-400 mb-2 font-semibold">
+                  Key Engineering Contributions
+                </div>
+                <ul className="space-y-1.5 text-xs text-neutral-800 dark:text-neutral-300">
+                  {exp.responsibilities.map((r, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-blue-600 dark:text-blue-400 font-mono mt-0.5">›</span>
+                      <span>{r}</span>
+                    </li>
                   ))}
-                </div>
-              </motion.div>
-            </motion.div>
+                </ul>
+              </div>
+
+              {/* Tag pills */}
+              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-neutral-200 dark:border-[#22252a]/60">
+                {exp.skills.map((s) => (
+                  <span
+                    key={s}
+                    className={`text-[11px] font-mono px-2 py-0.5 rounded border ${
+                      isDark
+                        ? "bg-[#0f1013] border-[#22252a] text-neutral-300"
+                        : "bg-neutral-100 border-neutral-300 text-neutral-900 font-medium"
+                    }`}
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
 
-          {/* CTA to connect */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="pl-16"
+          {/* Open source & independent engineering notice */}
+          <div
+            className={`p-5 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono ${
+              isDark
+                ? "bg-[#131518]/80 border-[#22252a] text-neutral-300"
+                : "bg-white border-neutral-300 text-neutral-800 shadow-sm"
+            }`}
           >
-            <div className={`text-sm ${isDark ? "text-gray-600" : "text-gray-400"}`}>
-              More coming soon — currently building & learning 🚀
+            <div>
+              <span className="font-bold text-neutral-950 dark:text-neutral-100 block mb-0.5">
+                Independent Systems & Tooling Development (2024 – Present)
+              </span>
+              <span className="text-neutral-700 dark:text-neutral-400">
+                Continuously publishing developer CLI tools in Go, distributed RPC engines on npm, and system design simulators.
+              </span>
             </div>
-          </motion.div>
+            <a
+              href="https://github.com/ndk123-web"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap font-medium"
+            >
+              github.com/ndk123-web →
+            </a>
+          </div>
         </div>
       </div>
     </section>
